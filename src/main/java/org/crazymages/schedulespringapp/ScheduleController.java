@@ -20,6 +20,11 @@ public class ScheduleController {
         return schedule;
     }
 
+    @GetMapping(value = "/schedule/count")
+    public int getAmountOfLessons() {
+        return schedule.size();
+    }
+
     @PostMapping(value = "/schedule")
     public void addLesson(@RequestBody Lesson lesson) {
         schedule.add(lesson);
@@ -29,6 +34,11 @@ public class ScheduleController {
     public void deleteLesson(@PathVariable String id) {
         int lessonId = Integer.parseInt(id);
         schedule.remove(lessonId);
+    }
+
+    @DeleteMapping(value = "/schedule/all")
+    public void deleteSchedule() {
+        schedule.clear();
     }
 
     @PutMapping(value = "/schedule/{id}")
